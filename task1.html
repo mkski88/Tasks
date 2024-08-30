@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find top 10 most frequent words in the text</title>
+</head>
+<body>
+</body>
+<script>
+
+  let text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl mi, elementum ut sodales a, mollis vitae mauris. Praesent ante sapien, laoreet quis ligula non, malesuada posuere magna. Pellentesque est metus, tempus vitae vehicula eget, tristique a urna. In vulputate tristique mauris, non luctus sapien aliquam nec. Nulla facilisi. Aliquam luctus ex eget metus interdum molestie. Integer tincidunt ornare turpis sed dapibus. Etiam vulputate laoreet ante, non consequat orci ornare ut. Suspendisse et ligula est.' +
+      'Nam ac viverra nulla, sit amet finibus orci. Maecenas pulvinar diam nibh, eu tincidunt nunc blandit vel. Donec ullamcorper in sem ut tincidunt. Morbi eget felis ex. Vivamus viverra mauris sed ligula sagittis, luctus laoreet diam consequat. Mauris luctus lacus at elit ultrices, a viverra felis iaculis. Sed congue tincidunt mauris, non auctor nulla vestibulum et. Aenean suscipit malesuada justo, eget iaculis nisi congue ut. Integer eu tincidunt metus.' +
+      'In sagittis lectus vitae porttitor accumsan. Proin id arcu libero. Proin scelerisque dolor et ultrices dictum. Nunc convallis augue libero, a bibendum nisi fringilla vel. Nulla eu nulla ut augue aliquam finibus non sed enim. Cras aliquet mauris eget aliquam rutrum. Vestibulum eu justo ligula. Vivamus eget dolor at elit lobortis semper. Pellentesque interdum justo eu dui fringilla rutrum. Vivamus non tincidunt libero.' +
+      'Sed ut sapien et sem tempus lobortis. Pellentesque dignissim rutrum ante non viverra. Aliquam gravida nulla sed ex tincidunt congue. Donec malesuada risus ut nisi efficitur, non fringilla purus accumsan. Nulla in velit mauris. Maecenas ut egestas magna. Vestibulum suscipit metus eu tristique malesuada. Ut sollicitudin sit amet erat et sagittis. Morbi sapien felis, malesuada et pulvinar ac, tempor nec purus. Nunc accumsan volutpat tellus vel sollicitudin. Nunc lacus purus, egestas a semper vitae, ultrices quis enim. Proin mattis arcu at finibus lobortis. Phasellus nisl neque, iaculis at dictum et, auctor at libero. Etiam vel enim aliquet, eleifend elit id, tincidunt tellus.' +
+      'Aenean id sem libero. Morbi vehicula est vel purus pretium, et congue risus fermentum. Ut vel vestibulum nisl, at elementum magna. Mauris sed suscipit lectus, finibus aliquam lacus. Sed nisl tortor, dapibus eu consequat ut, luctus sit amet tellus. Maecenas interdum metus massa, in condimentum purus varius ut. Nunc ut orci eu risus faucibus vehicula. Quisque et euismod eros. Nam nunc mi, efficitur id dictum vitae, egestas quis ex.'
+
+  //clear and format text
+  text = text.toLowerCase()
+  text = text.replace(/[.,]/g, '');
+
+  //split by word and sort
+  let textToArr = text.split(' ')
+  textToArr.sort()
+
+  //array for results
+  let result = []
+
+  for (let i = 0; textToArr.length > 0; i++) {
+      let currentWord = textToArr.shift();
+      //the counter is equal 1 since the word always occurs at least once
+      let counter = 1;
+
+      for (let j = 0; textToArr.length > 0; j++) {
+          //check for dublicates
+          if(textToArr.indexOf(currentWord)!=-1)
+          {
+              counter++
+              //delete word from array and continue
+              currentWord = textToArr.shift()
+          }
+          else
+              //if there are no dublicates stop the loop
+              break;
+      }
+
+      result.push(counter+' - '+currentWord)
+      }
+
+
+  //sort result array by numbers
+  result.sort((a, b) => {
+      const numA = parseInt(a.split(' - ')[0], 10);
+      const numB = parseInt(b.split(' - ')[0], 10);
+      return numB-numA;
+  });
+
+
+  //show top 10 most frequent words
+  for (let i=0;i<10;i++)
+  {
+      console.log(result[i])
+  }
+
+
+</script>
+</html>
