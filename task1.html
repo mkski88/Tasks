@@ -16,7 +16,7 @@
 
   //clear and format text
   text = text.toLowerCase()
-  text = text.replace(/[.,]/g, '');
+  text = text.replace(/[.,!?;:()]/g, '');
 
   //split by word and sort
   let textToArr = text.split(' ')
@@ -56,10 +56,9 @@
 
 
   //show top 10 most frequent words
-  for (let i=0;i<10;i++)
-  {
-      console.log(result[i])
-  }
+  result.slice(0, 10).forEach((element) => {
+      console.log(element);
+  });
 
 
 </script>
