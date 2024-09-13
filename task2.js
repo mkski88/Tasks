@@ -1,3 +1,9 @@
+/*
+    Given an array of integers, find the one that appears an odd number of times.
+    There will always be only one integer that appears an odd number of times.
+ */
+
+
 function findOdd(array) {
     //If array has only one element, return it
     if(array.length == 1) return array[0];
